@@ -1,1 +1,0 @@
-Parlem en catala

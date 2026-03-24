@@ -1,20 +1,32 @@
+/**
+ * Script de control de porta amb botó i llum verda per Shelly
+ *
+ * Configuració:
+ * - Input 0 (S1): Sensor porta (detecta si està oberta/tancada)
+ * - Input 1 (S2): Botó per obrir porta
+ * - Switch 0: Llum verda (controlada manualment)
+ * - Switch 1: Actuador obertura porta
+ *
+ * Funcionament:
+ * - Quan es prem el botó (S2) i la llum verda està encesa, s'obre la porta
+ * - La porta només s'obre si està tancada
+ * - Quan es detecta que la porta s'ha obert (S1), es desactiva l'actuador
+ */
 
-
+// Configuració dels IDs dels components
 let CONFIG = {
-  INPUT_PORTA: 0,
-  INPUT_BOTO: 1,
-  SWITCH_LLUM_VERDA: 1,
-  SWITCH_ACTUADOR: 0
+  INPUT_PORTA: 0,        // S1 - Sensor estat porta
+  INPUT_BOTO: 1,         // S2 - Botó client
+  SWITCH_LLUM_VERDA: 1,  // Llum verda (control manual) - Switch 1
+  SWITCH_ACTUADOR: 0     // Actuador obertura porta - Switch 0
 };
 
-let portaTancada = true;
+// Variable per controlar l'estat
+let portaObrint = false;
 
-let combinacioSecreta = ["long", "short", "short", "short", "long", "short"];
-let combinacioActual = [];
-let ultimaPulsacio = 0;
-let TIMEOUT_COMBINACIO = 5000;
-let timerReset = null;
-
+/**
+ * Comprova si la llum verda està encesa
+ */
 function llumVerdaEncesa(callback) {
   Shelly.call(
     "Switch.GetStatus",
@@ -30,7 +42,10 @@ function llumVerdaEncesa(callback) {
   );
 }
 
-function checkPortaTancada(callback) {
+/**
+ * Comprova si la porta està tancada
+ */
+function portaTancada(callback) {
   Shelly.call(
     "Input.GetStatus",
     { id: CONFIG.INPUT_PORTA },
@@ -40,12 +55,15 @@ function checkPortaTancada(callback) {
         callback(false);
         return;
       }
-
-      callback(result.state === true);
+      // Si state és false, la porta està tancada
+      callback(result.state === false);
     }
   );
 }
 
+/**
+ * Activa l'actuador per obrir la porta
+ */
 function activarActuador() {
   Shelly.call(
     "Switch.Set",
@@ -56,11 +74,14 @@ function activarActuador() {
         return;
       }
       print("Actuador activat - obrint porta");
-      portaTancada = false;
+      portaObrint = true;
     }
   );
 }
 
+/**
+ * Desactiva l'actuador
+ */
 function desactivarActuador() {
   Shelly.call(
     "Switch.Set",
@@ -71,91 +92,18 @@ function desactivarActuador() {
         return;
       }
       print("Actuador desactivat");
-      portaTancada = true;
+      portaObrint = false;
     }
   );
 }
 
-function apagarLlumVerda() {
-  Shelly.call(
-    "Switch.Set",
-    { id: CONFIG.SWITCH_LLUM_VERDA, on: false },
-    function(result, error_code, error_message) {
-      if (error_code !== 0) {
-        print("Error apagant llum verda:", error_message);
-        return;
-      }
-      print("Llum verda apagada");
-    }
-  );
-}
-
-function resetCombinacio() {
-  combinacioActual = [];
-  if (timerReset !== null) {
-    Timer.clear(timerReset);
-    timerReset = null;
-  }
-}
-
-function comprovarCombinacio() {
-  if (combinacioActual.length !== combinacioSecreta.length) {
-    return false;
-  }
-
-  for (let i = 0; i < combinacioSecreta.length; i++) {
-    if (combinacioActual[i] !== combinacioSecreta[i]) {
-      return false;
-    }
-  }
-
-  return true;
-}
-
-function afegirPulsacio(tipus) {
-  let ara = Date.now();
-
-  if (ara - ultimaPulsacio > TIMEOUT_COMBINACIO) {
-    resetCombinacio();
-  }
-
-  if (timerReset !== null) {
-    Timer.clear(timerReset);
-    timerReset = null;
-  }
-
-  ultimaPulsacio = ara;
-  combinacioActual.push(tipus);
-
-  print("Combinació actual:", JSON.stringify(combinacioActual));
-
-  if (combinacioActual.length > combinacioSecreta.length) {
-    let nova = [];
-    for (let i = 1; i < combinacioActual.length; i++) {
-      nova.push(combinacioActual[i]);
-    }
-    combinacioActual = nova;
-  }
-
-  if (comprovarCombinacio()) {
-    print("*** COMBINACIÓ SECRETA CORRECTA! ***");
-    resetCombinacio();
-    return true;
-  }
-
-  if (combinacioActual.length > 0) {
-    timerReset = Timer.set(TIMEOUT_COMBINACIO, false, function() {
-      print("Timeout - Reiniciant combinació per inactivitat");
-      resetCombinacio();
-    });
-  }
-
-  return false;
-}
-
+/**
+ * Processa la pulsació del botó
+ */
 function processarPulsacioBoto() {
   print("Botó premut - verificant condicions...");
 
+  // Primer comprova si la llum verda està encesa
   llumVerdaEncesa(function(encesa) {
     if (!encesa) {
       print("Llum verda apagada - accés denegat");
@@ -164,7 +112,8 @@ function processarPulsacioBoto() {
 
     print("Llum verda encesa - verificant estat porta...");
 
-    checkPortaTancada(function(tancada) {
+    // Comprova si la porta està tancada
+    portaTancada(function(tancada) {
       if (!tancada) {
         print("La porta ja està oberta o obrint-se");
         return;
@@ -176,81 +125,31 @@ function processarPulsacioBoto() {
   });
 }
 
+/**
+ * Gestor d'esdeveniments principal
+ */
 Shelly.addEventHandler(function(event) {
   print("Event rebut:", JSON.stringify(event));
 
+  // Detecta quan es prem el botó (S2)
   if (event.component === "input:" + CONFIG.INPUT_BOTO) {
     print("Event del botó detectat!");
-
-    if (event.info.event === "long_push") {
-      print("PULSACIÓ LLARGA");
-      if (afegirPulsacio("long")) {
-        print("Obrint per combinació secreta!");
-        checkPortaTancada(function(tancada) {
-          if (tancada) {
-            activarActuador();
-          } else {
-            print("Porta ja oberta");
-          }
-        });
-      }
-    }
-    else if (event.info.event === "single_push") {
-      print("PULSACIÓ CURTA");
-      if (afegirPulsacio("short")) {
-        print("Obrint per combinació secreta!");
-        checkPortaTancada(function(tancada) {
-          if (tancada) {
-            activarActuador();
-          } else {
-            print("Porta ja oberta");
-          }
-        });
-      } else {
-
-        processarPulsacioBoto();
-      }
-    }
-    else if (event.info.event === "double_push") {
-      print("PULSACIÓ DOBLE");
-
-      if (afegirPulsacio("short")) {
-        print("Obrint per combinació secreta!");
-        checkPortaTancada(function(tancada) {
-          if (tancada) {
-            activarActuador();
-          } else {
-            print("Porta ja oberta");
-          }
-        });
-        return;
-      }
-      if (afegirPulsacio("short")) {
-        print("Obrint per combinació secreta!");
-        checkPortaTancada(function(tancada) {
-          if (tancada) {
-            activarActuador();
-          } else {
-            print("Porta ja oberta");
-          }
-        });
-      }
-    }
-    else if (event.info.event === "btn_down") {
-      print("Tipus event btn_down");
+    if (event.info.event === "single_push" || event.info.event === "btn_down") {
+      print("Tipus event correcte:", event.info.event);
       processarPulsacioBoto();
     }
   }
 
+  // Detecta quan la porta s'obre (S1 canvia d'estat)
   if (event.component === "input:" + CONFIG.INPUT_PORTA) {
-    if (event.info.state === false && !portaTancada) {
-      print("Porta oberta detectada - desactivant actuador i apagant llum verda");
+    if (event.info.state === true && portaObrint) {
+      print("Porta oberta detectada - desactivant actuador");
       desactivarActuador();
-      apagarLlumVerda();
     }
   }
 });
 
+// Exposar funció HTTP per webhook
 HTTPServer.registerEndpoint("button_pressed", function(request, response) {
   print("Webhook rebut - botó premut!");
   processarPulsacioBoto();
@@ -259,13 +158,8 @@ HTTPServer.registerEndpoint("button_pressed", function(request, response) {
   response.send();
 });
 
-print("========================================");
-print("SCRIPT CONTROL PORTA ACTIU");
-print("========================================");
+print("Script de control de porta inicialitzat");
 print("- Input porta:", CONFIG.INPUT_PORTA);
 print("- Input botó:", CONFIG.INPUT_BOTO);
 print("- Switch llum verda:", CONFIG.SWITCH_LLUM_VERDA);
 print("- Switch actuador:", CONFIG.SWITCH_ACTUADOR);
-print("- Combinació secreta: LLARG-CURT-CURT-CURT-LLARG-CURT");
-print("- Timeout combinació: 5 segons");
-print("========================================");
