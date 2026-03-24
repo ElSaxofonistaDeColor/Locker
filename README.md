@@ -17,12 +17,8 @@ Sistema de lockers intel·ligents per venda de productes de proximitat via Whats
 │   ├── scripts/          # Scripts de control de porta i deploy
 │   ├── config/           # Configuracions JSON dels dispositius
 │   ├── docs/             # Documentació i inventaris
+│   ├── Shelly/           # Scripts Shelly genèrics (persianes, llums)
 │   └── devices_inventory.json
-│
-├── Shelly/               # Scripts Shelly genèrics (persianes, llums)
-│   ├── control_porta_*.js
-│   ├── setup_shelly.sh
-│   └── scan_shellys.sh
 │
 └── whatsappBot.md        # Referència API keys i llibreries
 ```
