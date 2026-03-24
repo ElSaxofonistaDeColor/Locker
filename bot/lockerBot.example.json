@@ -1,0 +1,26 @@
+{
+  "admin": {
+    "master": "34627582130",
+    "logNumber": "34627582130"
+  },
+  "api": {
+    "openaiApiKey": "YOUR_OPENAI_API_KEY",
+    "geminiApiKey": "YOUR_GEMINI_API_KEY",
+    "openaiModel": "gpt-4.1-nano",
+    "geminiModel": "gemini-2.0-flash"
+  },
+  "whatsapp": {
+    "sessionPath": "./baileys_auth"
+  },
+  "lockers": {
+    "LK01": { "ip": "10.160.140.190" },
+    "LK02": { "ip": "10.160.140.183" },
+    "LK03": { "ip": "10.160.140.147" },
+    "LK04": { "ip": "10.160.140.119" },
+    "LK05": { "ip": "10.160.140.126" },
+    "LK06": { "ip": "10.160.140.181" },
+    "LK07": { "ip": "10.160.140.243" },
+    "LK08": { "ip": "10.160.140.195" },
+    "LK09": { "ip": "10.160.140.120" }
+  }
+}

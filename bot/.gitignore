@@ -1,0 +1,8 @@
+node_modules/
+baileys_auth/
+.bot-number
+data/Client_*.json
+data/Prod_*.json
+*.log
+.DS_Store
+lockerBot.json

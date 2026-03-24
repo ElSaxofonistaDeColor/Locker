@@ -1,0 +1,11 @@
+{
+  "LK01": { "ip": "10.160.140.190", "productor": null, "producte": null, "preu": null, "stock": 0, "estat": "lliure" },
+  "LK02": { "ip": "10.160.140.183", "productor": null, "producte": null, "preu": null, "stock": 0, "estat": "lliure" },
+  "LK03": { "ip": "10.160.140.147", "productor": null, "producte": null, "preu": null, "stock": 0, "estat": "lliure" },
+  "LK04": { "ip": "10.160.140.119", "productor": null, "producte": null, "preu": null, "stock": 0, "estat": "lliure" },
+  "LK05": { "ip": "10.160.140.126", "productor": null, "producte": null, "preu": null, "stock": 0, "estat": "lliure" },
+  "LK06": { "ip": "10.160.140.181", "productor": null, "producte": null, "preu": null, "stock": 0, "estat": "lliure" },
+  "LK07": { "ip": "10.160.140.243", "productor": null, "producte": null, "preu": null, "stock": 0, "estat": "lliure" },
+  "LK08": { "ip": "10.160.140.195", "productor": null, "producte": null, "preu": null, "stock": 0, "estat": "lliure" },
+  "LK09": { "ip": "10.160.140.120", "productor": null, "producte": null, "preu": null, "stock": 0, "estat": "lliure" }
+}
