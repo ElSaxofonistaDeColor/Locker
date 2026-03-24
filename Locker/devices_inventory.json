@@ -1,0 +1,92 @@
+{
+  "Lk01": {
+    "ip": "10.160.140.190",
+    "ip_antiga": "10.160.121.190",
+    "mac": "2CBCBB2D7A34",
+    "model": "SNSW-102P16EU",
+    "firmware": "1.7.1",
+    "app": "Plus2PM",
+    "status": "online",
+    "wifi": "Locker"
+  },
+  "Lk02": {
+    "ip": "10.160.140.183",
+    "ip_antiga": "10.160.121.184",
+    "mac": "8813BFD187B0",
+    "model": "SNSW-102P16EU",
+    "firmware": "1.7.1",
+    "app": "Plus2PM",
+    "status": "online",
+    "wifi": "Locker"
+  },
+  "Lk03": {
+    "ip": "10.160.140.147",
+    "ip_antiga": "10.160.121.147",
+    "mac": "2CBCBB3D80B8",
+    "model": "SNSW-102P16EU",
+    "firmware": "1.7.1",
+    "app": "Plus2PM",
+    "status": "online",
+    "wifi": "Locker"
+  },
+  "Lk04": {
+    "ip": "10.160.140.119",
+    "ip_antiga": "10.160.121.119",
+    "mac": "8813BFD33514",
+    "model": "SNSW-102P16EU",
+    "firmware": "1.7.1",
+    "app": "Plus2PM",
+    "status": "online",
+    "wifi": "Locker"
+  },
+  "Lk05": {
+    "ip": "10.160.140.126",
+    "ip_antiga": "10.160.121.126",
+    "mac": "F8B3B7BE4688",
+    "model": "SNSW-102P16EU",
+    "firmware": "1.7.1",
+    "app": "Plus2PM",
+    "status": "online",
+    "wifi": "Locker"
+  },
+  "Lk06": {
+    "ip": "10.160.140.181",
+    "ip_antiga": "10.160.121.181",
+    "mac": "2CBCBB3DD640",
+    "model": "SNSW-102P16EU",
+    "firmware": "1.7.1",
+    "app": "Plus2PM",
+    "status": "online",
+    "wifi": "Locker"
+  },
+  "Lk07": {
+    "ip": "10.160.140.243",
+    "ip_antiga": "10.160.121.243",
+    "mac": "8813BFD56F0C",
+    "model": "SNSW-102P16EU",
+    "firmware": "1.7.1",
+    "app": "Plus2PM",
+    "status": "online",
+    "wifi": "Locker"
+  },
+  "Lk08": {
+    "ip": "10.160.140.195",
+    "ip_antiga": "10.160.121.195",
+    "mac": "2043A80A8368",
+    "model": "SNSW-102P16EU",
+    "firmware": "1.7.1",
+    "app": "Plus2PM",
+    "status": "online",
+    "wifi": "Locker"
+  },
+  "Lk09": {
+    "ip": "10.160.140.120",
+    "ip_antiga": "10.160.121.120",
+    "mac": "F8B3B7BE47D8",
+    "model": "SNSW-102P16EU",
+    "firmware": "1.7.1",
+    "app": "Plus2PM",
+    "status": "online",
+    "wifi": "Locker"
+  }
+}

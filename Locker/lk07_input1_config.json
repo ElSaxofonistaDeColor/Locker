@@ -1,0 +1,8 @@
+{
+    "id": 1,
+    "name": null,
+    "type": "button",
+    "enable": true,
+    "invert": false,
+    "factory_reset": true
+}

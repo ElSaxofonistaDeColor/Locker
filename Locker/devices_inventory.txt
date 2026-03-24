@@ -1,0 +1,103 @@
+============================================================
+INVENTARI DISPOSITIUS LOCKER
+Data: 2025-12-18 (Actualitzat amb WiFi "Locker")
+============================================================
+
+[Lk01]
+  IP Nova:  10.160.121.190
+  IP Antiga: 10.160.61.192
+  MAC:      2CBCBB2D7A34
+  Model:    SNSW-102P16EU
+  App:      Plus2PM
+  Firmware: 1.7.1
+  WiFi:     Locker
+  Status:   ONLINE
+
+[Lk02]
+  IP Nova:  10.160.121.184
+  IP Antiga: 10.160.61.186
+  MAC:      8813BFD187B0
+  Model:    SNSW-102P16EU
+  App:      Plus2PM
+  Firmware: 1.7.1
+  WiFi:     Locker
+  Status:   ONLINE
+
+[Lk03]
+  IP Nova:  10.160.121.147
+  IP Antiga: 10.160.61.148
+  MAC:      2CBCBB3D80B8
+  Model:    SNSW-102P16EU
+  App:      Plus2PM
+  Firmware: 1.7.1
+  WiFi:     Locker
+  Status:   ONLINE
+
+[Lk04]
+  IP Nova:  10.160.121.119
+  IP Antiga: 10.160.61.123
+  MAC:      8813BFD33514
+  Model:    SNSW-102P16EU
+  App:      Plus2PM
+  Firmware: 1.7.1
+  WiFi:     Locker
+  Status:   ONLINE
+
+[Lk05]
+  IP Nova:  10.160.121.126
+  IP Antiga: 10.160.61.128
+  MAC:      F8B3B7BE4688
+  Model:    SNSW-102P16EU
+  App:      Plus2PM
+  Firmware: 1.7.1
+  WiFi:     Locker
+  Status:   ONLINE
+
+[Lk06]
+  IP Nova:  10.160.121.181
+  IP Antiga: 10.160.61.184
+  MAC:      2CBCBB3DD640
+  Model:    SNSW-102P16EU
+  App:      Plus2PM
+  Firmware: 1.7.1
+  WiFi:     Locker
+  Status:   ONLINE
+
+[Lk07]
+  IP Nova:  10.160.121.243
+  IP Antiga: 10.160.61.247
+  MAC:      8813BFD56F0C
+  Model:    SNSW-102P16EU
+  App:      Plus2PM
+  Firmware: 1.7.1
+  WiFi:     Locker
+  Status:   ONLINE
+
+[Lk08]
+  IP Nova:  10.160.121.195
+  IP Antiga: 10.160.61.197
+  MAC:      2043A80A8368
+  Model:    SNSW-102P16EU
+  App:      Plus2PM
+  Firmware: 1.7.1
+  WiFi:     Locker
+  Status:   ONLINE
+
+[Lk09]
+  IP Nova:  10.160.121.120
+  IP Antiga: 10.160.61.122
+  MAC:      F8B3B7BE47D8
+  Model:    SNSW-102P16EU
+  App:      Plus2PM
+  Firmware: 1.7.1
+  WiFi:     Locker
+  Status:   ONLINE
+
+============================================================
+NOTES:
+- Tots els dispositius ara estan connectats a WiFi "Locker"
+- Range IP: 10.160.121.x (abans 10.160.61.x)
+- Tots els dispositius ONLINE i accessibles
+============================================================
+FI INVENTARI
+============================================================

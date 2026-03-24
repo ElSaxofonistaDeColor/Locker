@@ -1,0 +1,34 @@
+{
+    "ap": {
+        "ssid": "ShellyPlus2PM-8813BFD56F0C",
+        "is_open": true,
+        "enable": false,
+        "range_extender": {
+            "enable": false
+        }
+    },
+    "sta": {
+        "ssid": "Locker",
+        "is_open": false,
+        "enable": true,
+        "ipv4mode": "dhcp",
+        "ip": null,
+        "netmask": null,
+        "gw": null,
+        "nameserver": null
+    },
+    "sta1": {
+        "ssid": "Router",
+        "is_open": false,
+        "enable": true,
+        "ipv4mode": "dhcp",
+        "ip": null,
+        "netmask": null,
+        "gw": null,
+        "nameserver": null
+    },
+    "roam": {
+        "rssi_thr": -80,
+        "interval": 60
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "id": 0,
+    "name": null,
+    "type": "switch",
+    "enable": true,
+    "invert": false,
+    "factory_reset": true
+}
